@@ -56,13 +56,31 @@
 
 <h3>
 <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span class="octicon octicon-link"></span></a>视图和模板</h3>
-<div>
-	<ul>
-		<li ng-repeat="phone in phones">
-		  {{phone.name}}
-		<p>{{phone.snippet}}</p>
-		</li>
-	  </ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+	  Sort by:
+	<select ng-model="orderProp">
+	  <option value="name">Alphabetical</option>
+	  <option value="age">Newest</option>
+	</select>
+
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+      <ul class="phones">
+        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+          {{phone.name}}
+        <p>{{phone.snippet}}</p>
+        </li>
+      </ul>
+
+       </div>
+  </div>
 </div>
 
 <h3>
